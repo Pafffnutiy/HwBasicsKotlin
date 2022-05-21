@@ -5,27 +5,30 @@ const val oneThousandWord = "одна тысяча"
 
 fun main(args: Array<String>)
 {
-    val inputInt = "1000".toInt()
+    println(getWordsByNum(args))
+}
+
+fun getWordsByNum(strings: Array<String>): String {
+    if(strings.size!=1) throw Exception("Please enter only one number")
+
+    val inputInt = strings[0].toInt()
     if (!(inputInt in 1..1000)) throw Exception("Number should be from [1;30]")
 
     val input = inputInt.toString()
 
     val digitsByNumber = getDigitsByNumber(input)
 
-    val resultWord = when(digitsByNumber.size){
+    return when(digitsByNumber.size){
         1 -> digitsWord[digitsByNumber[0].digitToInt()-1]
         2 -> parseNumWith2digits(digitsByNumber)
         3 -> parseNumWith3digits(digitsByNumber)
         4 -> oneThousandWord
         else -> ""
     }
-
-    println(resultWord)
 }
 
 fun parseNumWith2digits(digits: Array<Char>): String
 {
-
     val digit1 = digits[0].digitToInt()
     val digit1Word = if(digit1!=0) digitsWord[digit1-1] else ""
     val digit2 = digits[1].digitToInt()
