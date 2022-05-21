@@ -5,20 +5,7 @@ import org.junit.jupiter.api.TestFactory
 import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
 
-class TestsArray {
-    @TestFactory
-    fun testEnterIncorrectSourceArray(): Collection<DynamicTest> {
-        val goodElems = arrayOf("1.0", "23.0", "-2", "-4.5", "10", "-1000")
-        val badElems = arrayOf("abc","1-2","3.+0")
-        return badElems.map {
-            dynamicTest("Test with \"$it\" as element of array") {
-                assertFailsWith<Exception> {
-                    makeNewArray(goodElems+it)
-                }
-            }
-        }.toList()
-    }
-
+class TestsArrayBasics {
     @Test
     fun testAllNegs(){
         val sourceArray = arrayOf("-5.0","-3","-10.1","-1.7")
@@ -38,5 +25,20 @@ class TestsArray {
         val sourceArray = arrayOf("1.2","3.2","10.1","11.4")
         val expectingResultArray = arrayOf(1.2,3.2,10.1,11.4)
         assertTrue(makeNewArray(sourceArray).contentEquals(expectingResultArray))
+    }
+}
+
+class TestsArrayExceptions {
+    @TestFactory
+    fun testEnterIncorrectSourceArray(): Collection<DynamicTest> {
+        val goodElems = arrayOf("1.0", "23.0", "-2", "-4.5", "10", "-1000")
+        val badElems = arrayOf("abc","1-2","3.+0")
+        return badElems.map {
+            dynamicTest("Test with \"$it\" as element of array") {
+                assertFailsWith<Exception> {
+                    makeNewArray(goodElems+it)
+                }
+            }
+        }.toList()
     }
 }
