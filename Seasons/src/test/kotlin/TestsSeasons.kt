@@ -5,7 +5,7 @@ import org.junit.jupiter.api.TestFactory
 import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
 
-class TestsSeasons {
+class TestsSeasonsBasics {
     @TestFactory
     fun testEnterWinterMonthNumber(): Collection<DynamicTest> {
         val months = arrayOf("1","2","12")
@@ -45,7 +45,9 @@ class TestsSeasons {
             }
         }
     }
+}
 
+class TestsSeasonsExceptions {
     @Test
     fun testEnterNotNumber(){
         assertFailsWith<Exception> {
@@ -74,4 +76,3 @@ class TestsSeasons {
         }
     }
 }
-
