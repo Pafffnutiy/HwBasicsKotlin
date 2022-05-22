@@ -8,11 +8,19 @@ fun main(args: Array<String>)
     println(getWordsByNum(args))
 }
 
+fun isArgsCorrectNum(strings: Array<String>): Boolean {
+    for(elem in strings)
+        if(elem.toIntOrNull()==null)
+            return false
+
+    return true
+}
+
 fun getWordsByNum(strings: Array<String>): String {
     if(strings.size!=1) throw Exception("Please enter only one number")
-
+    if(!isArgsCorrectNum(strings)) throw Exception("Please enter an integer number from [1;30]")
     val inputInt = strings[0].toInt()
-    if (!(inputInt in 1..1000)) throw Exception("Number should be from [1;30]")
+    if (inputInt !in 1..1000) throw Exception("Number should be from [1;30]")
 
     val input = inputInt.toString()
 
@@ -54,7 +62,6 @@ fun parseNumWith2digits(digits: Array<Char>): String
 
 fun parseNumWith3digits(digits: Array<Char>): String
 {
-
     val result = when(val digit = digits[0].digitToInt()){
         in 1..2 -> hundredsWord[digit-1]
         in 3..4 -> digitsWord[digit-1] +  hundredsWord[2]

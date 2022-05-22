@@ -25,8 +25,8 @@ class TestsNum2WordBasics {
 
 class TestsNum2WordExceptions {
     @TestFactory
-    fun testEnterIncorrectNumbers(): Collection<DynamicTest> {
-        val sourceArray = arrayOf(-1, 12000, 12.4)
+    fun testEnterIncorrectInput(): Collection<DynamicTest> {
+        val sourceArray = arrayOf(-1, 12000, 12.4, "abs")
         return sourceArray.map {
             dynamicTest("Test of number $it") {
                 assertFailsWith<Exception> {

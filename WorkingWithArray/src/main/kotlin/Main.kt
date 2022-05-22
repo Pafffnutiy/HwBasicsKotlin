@@ -1,5 +1,5 @@
 fun main(args: Array<String>) {
-    val newArray = makeNewArray(args)
+    makeNewArray(args).forEach { println(it) }
 }
 
 fun isArgsCorrect(strings: Array<String>): Boolean {
